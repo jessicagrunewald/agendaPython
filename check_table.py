@@ -11,6 +11,13 @@ def check_table():
 
     if tabela:
         print("A tabela 'agenda' existe no banco de dados.")
+
+        # Exibir a estrutura da tabela
+        cursor.execute("PRAGMA table_info(agenda)")
+        colunas = cursor.fetchall()
+        print("\nEstrutura da tabela 'agenda':")
+        for coluna in colunas:
+            print(f" - {coluna[1]} ({coluna[2]})")
     else:
         print("A tabela 'agenda' não foi encontrada no banco de dados.")
 
