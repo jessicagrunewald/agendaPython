@@ -2,9 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Agendamento</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
+    <h1>Criar Novo Agendamento</h1>
+    <form action="/criar" method="post">
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" name="titulo" required>
 
+        <label for="data">Data:</label>
+        <input type="date" id="data" name="data" required>
+
+        <label for="horario">Horário:</label>
+        <input type="time" id="horario" name="horario" required>
+
+        <label for="descricao">Descrição:</label>
+        <textarea id="descricao" name="descricao"></textarea>
+
+        <label for="participantes">Participantes:</label>
+        <input type="text" id="participantes" name="participantes">
+
+        <label for="emails">E-mails dos Participantes:</label>
+        <input type="text" id="emails" name="emails">
+
+        <label for="link">Link da Reunião:</label>
+        <input type="url" id="link" name="link">
+
+        <label for="notas">Notas:</label>
+        <input type="text" id="notas" name="notas" maxlength="100">
+
+        <button type="submit">Salvar</button>
+        <a href="/" class="btn">Cancelar</a>
+    </form>
 </body>
 </html>

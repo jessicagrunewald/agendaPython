@@ -2,9 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda de Compromissos</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-
+    <h1>Agenda de Compromissos</h1>
+    <a href="/criar" class="btn">Adicionar Novo Agendamento</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Data</th>
+                <th>Horário</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for agendamento in agendamentos %}
+            <tr>
+                <td>{{ agendamento['id'] }}</td>
+                <td>{{ agendamento['titulo'] }}</td>
+                <td>{{ agendamento['data'] }}</td>
+                <td>{{ agendamento['horario'] }}</td>
+                <td>
+                    <a href="/atualizar/{{ agendamento['id'] }}" class="btn">Editar</a>
+                    <form action="/deletar/{{ agendamento['id'] }}" method="post" style="display:inline;">
+                        <button type="submit" class="btn danger">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>
