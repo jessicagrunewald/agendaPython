@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
-from app.db import get_db_connection
+from app.db.__init_ import get_db_connection
 
 app = Blueprint('routes', __name__)
 
