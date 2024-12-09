@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deletar Agendamento</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Confirmar Exclusão</h1>
+        <p>Tem certeza de que deseja excluir o agendamento "<strong>{{ agendamento['titulo'] }}</strong>" agendado para <strong>{{ agendamento['data'] }}</strong> às <strong>{{ agendamento['horario'] }}</strong>?</p>
+
+        <form action="{{ url_for('routes.delete', id=agendamento['id']) }}" method="post">
+            <button type="submit" class="btn danger">Excluir</button>
+            <a href="{{ url_for('routes.index') }}" class="btn cancel">Cancelar</a>
+        </form>
+    </div>
+</body>
+</html>

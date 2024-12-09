@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,34 +7,58 @@
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <h1>Agenda de Compromissos</h1>
-    <a href="/criar" class="btn">Adicionar Novo Agendamento</a>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Título</th>
-                <th>Data</th>
-                <th>Horário</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for agendamento in agendamentos %}
-            <tr>
-                <td>{{ agendamento['id'] }}</td>
-                <td>{{ agendamento['titulo'] }}</td>
-                <td>{{ agendamento['data'] }}</td>
-                <td>{{ agendamento['horario'] }}</td>
-                <td>
-                    <a href="/atualizar/{{ agendamento['id'] }}" class="btn">Editar</a>
-                    <form action="/deletar/{{ agendamento['id'] }}" method="post" style="display:inline;">
-                        <button type="submit" class="btn danger">Excluir</button>
-                    </form>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="container">
+        <h1>Agenda de Compromissos</h1>
+
+        <!-- Exibição de mensagens de feedback -->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for message in messages %}
+                <div class="alert">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% endwith %}
+
+        <!-- Botão para criar um novo agendamento -->
+        <a href="{{ url_for('routes.show_create_form') }}" class="btn">Adicionar Novo Agendamento</a>
+
+        <!-- Tabela de compromissos -->
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Data</th>
+                    <th>Horário</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if agendamentos %}
+                {% for agendamento in agendamentos %}
+                <tr>
+                    <td>{{ agendamento['id'] }}</td>
+                    <td>{{ agendamento['titulo'] }}</td>
+                    <td>{{ agendamento['data'] }}</td>
+                    <td>{{ agendamento['horario'] }}</td>
+                    <td>
+                        <a href="{{ url_for('routes.update', id=agendamento['id']) }}" class="btn">Editar</a>
+
+                        <form action="{{ url_for('routes.delete', id=agendamento['id']) }}" method="post" style="display:inline;">
+                            <button type="submit" class="btn danger" onclick="return confirm('Tem certeza que deseja excluir este compromisso?');">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="5" style="text-align:center;">Nenhum compromisso cadastrado.</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Agendamento</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Editar Agendamento</h1>
+
+        <form action="{{ url_for('routes.update', id=agendamento['id']) }}" method="post">
+            <label for="titulo">Título:</label>
+            <input type="text" name="titulo" value="{{ agendamento['titulo'] }}" required>
+
+            <label for="data">Data:</label>
+            <input type="date" name="data" value="{{ agendamento['data'] }}" required>
+
+            <label for="horario">Horário:</label>
+            <input type="time" name="horario" value="{{ agendamento['horario'] }}" required>
+
+            <label for="descricao">Descrição:</label>
+            <textarea name="descricao">{{ agendamento['descricao'] }}</textarea>
+
+            <label for="participantes">Participantes:</label>
+            <input type="text" name="participantes" value="{{ agendamento['participantes'] }}">
+
+            <label for="emails">Emails:</label>
+            <input type="email" name="emails" value="{{ agendamento['emails'] }}">
+
+            <label for="link">Link:</label>
+            <input type="url" name="link" value="{{ agendamento['link'] }}">
+
+            <label for="notas">Notas:</label>
+            <textarea name="notas">{{ agendamento['notas'] }}</textarea>
+
+            <button type="submit" class="btn">Atualizar</button>
+            <a href="{{ url_for('routes.index') }}" class="btn cancel">Cancelar</a>
+        </form>
+    </div>
+</body>
+</html>

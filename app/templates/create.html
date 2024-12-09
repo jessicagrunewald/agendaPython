@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Novo Agendamento</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Adicionar Novo Agendamento</h1>
+
+        <form action="{{ url_for('routes.create') }}" method="post">
+            <label for="titulo">Título:</label>
+            <input type="text" name="titulo" required>
+
+            <label for="data">Data:</label>
+            <input type="date" name="data" required>
+
+            <label for="horario">Horário:</label>
+            <input type="time" name="horario" required>
+
+            <label for="descricao">Descrição:</label>
+            <textarea name="descricao"></textarea>
+
+            <label for="participantes">Participantes:</label>
+            <input type="text" name="participantes">
+
+            <label for="emails">Emails:</label>
+            <input type="email" name="emails">
+
+            <label for="link">Link:</label>
+            <input type="url" name="link">
+
+            <label for="notas">Notas:</label>
+            <textarea name="notas"></textarea>
+
+            <button type="submit" class="btn">Salvar</button>
+            <a href="{{ url_for('routes.index') }}" class="btn cancel">Cancelar</a>
+        </form>
+    </div>
+</body>
+</html>
